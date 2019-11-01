@@ -1,0 +1,87 @@
+#TODO:  Standardize the plots
+
+Version 1.0-0:
+  - Updated docs, examples and description to pass CRAN checks. This is the first release.  
+
+Version 0.8-0:
+  - Changed optimizer default of copstressMin() to hjk-Newuoa and 5000 iterations as maximum.
+  
+Version 0.7-0:
+- Added nonmetric COPS-C and docs. 
+- Changed the summary and class of copsc and the according methods.
+- Added $typo to output of copstressMin
+
+Version 0.6-3:
+
+- Added ORCID.
+- Changed internals of all cops function to have a $theta and $parameters argument. copstress now extracts $parameters. print function for pcops models has been updated accordingly. Also, powerstressMin now returns $parameters, $theta as well.
+
+Version 0.6-2
+
+- Changes to copstressMin: Stress normalization that is reported and used for copstress changed. Now the default reported and used is stress-1. Setting stresstype="stress" will use stress but also report stress-1.
+
+Version 0.6-1
+
+- Changes to pcops: New initial configuration; now matches how powerstressMin does it.
+- Fixed bug in copsc that removed the rownames of the configuration and the delta of the object.
+
+Version 0.6-0
+
+- Changes to all functions: Changed number of iteration defaults to much lower values (thanks to Patrick Groenen). At least a speedup of 2 is expected for COPS-C and about 10x for P-COPS. 
+
+Version 0.5-0
+
+- Changes to pcops:  Added DIRECT and NOMAD optimization to pcops. Returned object is now called confdist instead of confdiss.
+
+Version 0.4-1
+
+- Changes to pcops: Standardized the returned stresses. Reported is sqrt(stress) (object$stress) throughout but used for optimization is stress (object$stress.m). 
+
+Version 0.4-0
+
+- Changes to pcops: Added the approximated power stress which can be estimated with smacof and is much faster than powerstressMin. 
+
+Version 0.3-0
+
+- Changes to copstressMin: Added new deriv free optimizers.
+
+
+Version 0.2-0
+
+- Changes to copstressMin: Added interval MDS for copstressMin. 
+
+Version 0.1-3
+
+- Changes to copstressMin: Changed the verbose levels. Added the dmax argument and handling (to be consistent with cordillera). Some tweaks to how to find the rang, dmax and init configuration (dmax and init if not supplied do now fit a torgerson model only) - much faster now as we no longer fit three powerstress MDS. Also, the configuration return under $conf now has the scaling from the scale argument, the unscaled configuration is now in the slot $confo. Stress is calculated for the explictly normalized config ($confo) but OC for the scaled config $conf. Scale="none" makes $conf and $confo equivalent. Changed the automatic dmax (now 1.5 times max reachability of power torgerson solution only if kappa>1, else 1 times max reachability). 
+
+Version 0.1-2
+
+- Added scaling of configs in pcops for OC calculation allows now "none", "sd" (divided by max standard deviation), rmsq (divided by maximum root mean square), "proc" (Procrustes adjustment to initial fit) and "std" (which is the old way and now discouraged). For this a new function is exported. Returned optimal configuration does not get scaled.
+- Adapted doc and removed the rstress example. 
+
+Version 0.1-1
+- Added new scaling of configs in copstressMin for OC calculation. Using scale() distorted the optimal config. Now one can choose between none, sd (divided by max standard deviation), rmsq (divided by maximum root mean square), proc (Procrustes adjustement to initial fit) and std (which is the old way and now discouraged). Added switch in copstressMin for choosing stress-1 and explicitly normed stress, with stress-1 now the default. Changed default stressweight and cordweight. Extended pcops to allow for the different scalings of X, changed default to the same as for cops-c. Now one can choose between TRUE or 1 which does centering/sd scaling the old way (each column differently now discouraged), 2 (scaling each column differently but no centering also not recommended when dealing with real distances), 3 (divided by max standard deviation), 4 (divided by maximum root mean square), FALSE or 0 for no scaling. 
+
+Version 0.1-0
+
+- Removed old versions and development versions of functions.
+- This is the package to be submitted with the paper. Incremented to 0.1-0.
+- Removed optics functions.   
+
+Version 0.0-3
+
+- Renamed all coploss to copstress.
+- Added a for loop version of powerstress (intended for optimization purposes eventually).
+- Removed all optics code.
+- Updated docs and descriptions.
+- Added some S3 methods for class pcops that were only in stops.  
+
+Version 0.0-2
+
+- Changed defaults for coplossMin to stressweight=0.99, cordweight=0.01.
+- Removed stops imports.
+- Removed cordillera fucntions.
+
+Version 0.0-1
+
+- Forked COPS functionality to its own package
