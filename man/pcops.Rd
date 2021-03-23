@@ -4,16 +4,34 @@
 \alias{pcops}
 \title{Profile COPS Function (aka COPS Variant 2)}
 \usage{
-pcops(dis, loss = c("stress", "smacofSym", "smacofSphere", "strain",
-  "sammon", "rstress", "powermds", "sstress", "elastic", "powersammon",
-  "powerelastic", "powerstress", "sammon2", "powerstrain", "apstress"),
-  weightmat = NULL, ndim = 2, init = NULL, theta = c(1, 1, 1),
-  stressweight = 1, cordweight, q = 2, minpts = ndim + 1,
-  epsilon = 100, rang, optimmethod = c("ALJ", "pso", "SANN", "DIRECT",
-  "DIRECTL", "stogo", "MADS", "hjk"), lower = c(1, 1, 0.5),
-  upper = c(5, 5, 2), verbose = 0, scale = c("proc", "sd", "none",
-  "std"), normed = TRUE, s = 4, stresstype = "default",
-  acc = 1e-07, itmaxo = 200, itmaxi = 10000, ...)
+pcops(
+  dis,
+  loss = c("stress", "smacofSym", "smacofSphere", "strain", "sammon", "rstress",
+    "powermds", "sstress", "elastic", "powersammon", "powerelastic", "powerstress",
+    "sammon2", "powerstrain", "apstress", "rpowerstress"),
+  weightmat = NULL,
+  ndim = 2,
+  init = NULL,
+  theta = c(1, 1, 1),
+  stressweight = 1,
+  cordweight,
+  q = 2,
+  minpts = ndim + 1,
+  epsilon = 100,
+  rang,
+  optimmethod = c("ALJ", "pso", "SANN", "DIRECT", "DIRECTL", "stogo", "MADS", "hjk"),
+  lower = c(1, 1, 0.5),
+  upper = c(5, 5, 2),
+  verbose = 0,
+  scale = c("proc", "sd", "none", "std"),
+  normed = TRUE,
+  s = 4,
+  stresstype = "default",
+  acc = 1e-07,
+  itmaxo = 200,
+  itmaxi = 10000,
+  ...
+)
 }
 \arguments{
 \item{dis}{numeric matrix or dist object of a matrix of proximities}
@@ -22,7 +40,7 @@ pcops(dis, loss = c("stress", "smacofSym", "smacofSphere", "strain",
 \itemize{
 \item Power transformations of observed proximities only: Strain loss or classical scaling (\code{strain}, workhorse is cmdscale), Kruskall's stress for symmetric matrices (\code{smacofSym} or \code{stress} and \code{smacofSphere} for scaling onto a sphere; workhorse is smacof), Sammon mapping (\code{sammon} or \code{sammon2}; for the earlier the workhorse is sammon from MASS for the latter it is smacof), elastic scaling (\code{elastic}, the workhorse is smacof), Takane et al's S-Stress \code{sstress} (workhorse is powerstressMin)
 \item Power transformations of fitted distances only: De Leeuw's r-stress \code{rstress} (workhorse is powerstressMin)
-\item Power transformations of fitted distances and observed proximities: Powermds \code{powermds}, Sammon mapping and elastic scaling with powers (\code{powersammon}, \code{powerelastic}, \code{powerstress}; workhorse is powerstressMin)
+\item Power transformations of fitted distances and observed proximities: Powermds (\code{powermds}), Sammon mapping/elastic scaling with powers (\code{powersammon}, \code{powerelastic} ), powerstress (POST-MDS, \code{powerstress}), restricted powerstress with equal transformations for delta and d (\code{rpowerstress}); workhorse is powerstressMin)
 \item Approximation to power stress: Approximated power stress (\code{apstress}; workhorse is smacof)
 }}
 
@@ -32,7 +50,7 @@ pcops(dis, loss = c("stress", "smacofSym", "smacofSphere", "strain",
 
 \item{init}{(optional) initial configuration. If not supplied, the Torgerson scaling result of the dissimilarity matrix dis^theta[2]/enorm(dis^theta[2],weightmat) is used.}
 
-\item{theta}{the theta vector of powers; the first is kappa (for the fitted distances if it exists), the second lambda (for the observed proximities if it exist), the third is nu (for the weights if it exists) . If a scalar is given as argument, it will take the role designated by the loss argument. Defaults to 1 1 1}
+\item{theta}{the theta vector of powers; the first is kappa (for the fitted distances if it exists), the second lambda (for the observed proximities if it exist), the third is nu (for the weights if it exists). If a scalar is given as argument, it will take the role designated by the loss argument (typially recycled). Defaults to 1 1 1}
 
 \item{stressweight}{weight to be used for the fit measure; defaults to 1}
 
@@ -44,7 +62,7 @@ pcops(dis, loss = c("stress", "smacofSym", "smacofSphere", "strain",
 
 \item{epsilon}{the epsilon parameter of OPTICS, the neighbourhood that is checked; defaults to 10}
 
-\item{rang}{range of the minimum reachabilities to be considered. If missing it is found from the initial configuration by taking 1.5 times the maximal minimum reachability of the model with theta=c(1,1). If NULL it will be normed to each configuration's minimum and maximum distance, so an absolute value of goodness-of-clusteredness. Note that the latter is not necessarily desirable when comparing configurations for their relative clusteredness. See also \code{\link{cordillera}}}
+\item{rang}{range of the minimum reachabilities to be considered. If missing it is found from the initial configuration by taking 1.5 times the maximal minimum reachability of the model with theta=c(1,1). If NULL it will be normed to each configuration's minimum and maximum distance, so an absolute value of goodness-of-clusteredness. Note that the latter is not necessarily desirable when comparing configurations for their relative clusteredness. See also \code{\link{cordillera}}.}
 
 \item{optimmethod}{What general purpose optimizer to use? Defaults to our adaptive LJ version (ALJ). Also allows particle swarm optimization with s particles ("pso") and simulated annealing ("SANN"), "DIRECT" and "DIRECTL", Hooke-Jeeves ("hjk"), StoGo ("stogo"), and "MADS". We recommend not using SANN and pso with the rstress, sstress and the power stress models. We amde good experiences with ALJ, stogo, DIRECT and DIRECTL and also MADS.}
 
@@ -52,9 +70,9 @@ pcops(dis, loss = c("stress", "smacofSym", "smacofSphere", "strain",
 
 \item{upper}{The upper contraints of the search region}
 
-\item{verbose}{numeric value hat prints information on the fitting process; >2 is extremely verbose}
+\item{verbose}{numeric value hat prints information on the fitting process; >2 is extremely verbose. Note that for models with some parameters fixed, the iteration progress of the optimizer shows different values also for the fixed parameters because due to the modular setup we always optimize over a three parameter vector. These values are inconsequential however as internally they will be fixed.}
 
-\item{scale}{should the configuration be scaled and/or centered for calculating the cordillera? "std" standardizes each column of the configurations to mean=0 and sd=1, "sd" scales the configuration by the maximum standard devation of any column, "proc" adjusts the fitted configuration to the init configuration (or the Togerson scaling solution if init=NULL). This parameter only has an effect for calculating the cordillera, the fitted and returned configuration is NOT scaled.}
+\item{scale}{should the configuration be scaled and/or centered for calculating the cordillera? "std" standardizes each column of the configurations to mean=0 and sd=1 (typically not a good idea), "sd" scales the configuration by the maximum standard devation of any column (default), "proc" adjusts the fitted configuration to the init configuration (or the Togerson scaling solution if init=NULL). This parameter only has an effect for calculating the cordillera, the fitted and returned configuration is NOT scaled.}
 
 \item{normed}{should the cordillera be normed; defaults to TRUE}
 
@@ -74,7 +92,7 @@ pcops(dis, loss = c("stress", "smacofSym", "smacofSphere", "strain",
 A list with the components
         \itemize{
         \item copstress: the weighted loss value
-        \item OC: the Optics cordillera
+        \item OC: the OPTICS cordillera for the scaled configuration (as defined by scale) 
         \item optim: the object returned from the optimization procedure
         \item stress: the stress (square root of stress.m)
         \item stress.m: default normalized stress 

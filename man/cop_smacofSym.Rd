@@ -4,11 +4,25 @@
 \alias{cop_smacofSym}
 \title{PCOPS versions of smacofSym models}
 \usage{
-cop_smacofSym(dis, theta = c(1, 1, 1), ndim = 2, weightmat = NULL,
-  init = NULL, itmaxi = 1000, ..., stressweight = 1,
-  cordweight = 0.5, q = 1, minpts = ndim + 1, epsilon = 10,
-  rang = NULL, verbose = 0, normed = TRUE, scale,
-  stresstype = "default")
+cop_smacofSym(
+  dis,
+  theta = c(1, 1, 1),
+  ndim = 2,
+  weightmat = NULL,
+  init = NULL,
+  itmaxi = 1000,
+  ...,
+  stressweight = 1,
+  cordweight = 0.5,
+  q = 1,
+  minpts = ndim + 1,
+  epsilon = 10,
+  rang = NULL,
+  verbose = 0,
+  normed = TRUE,
+  scale = "sd",
+  stresstype = "default"
+)
 }
 \arguments{
 \item{dis}{numeric matrix or dist object of a matrix of proximities}
@@ -57,7 +71,7 @@ A list with the components
         \item{copstress:} the weighted loss value
         \item{OC:} the Optics cordillera value
         \item{parameters:} the parameters used for fitting (kappa, lambda)
-        \item{fit:} the returned object of the fitting procedure (which has all smacofB elements and some more
+        \item{fit:} the returned object of the fitting procedure (which has all smacofB elements and some more)
         \item{cordillera:} the cordillera object
 }
 }

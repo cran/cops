@@ -4,11 +4,25 @@
 \alias{cop_apstress}
 \title{PCOPS versions of approximated power stress models. This uses an approximation and makes use of smacof.}
 \usage{
-cop_apstress(dis, theta = c(1, 1, 1), ndim = 2, weightmat = NULL,
-  init = NULL, itmaxi = 1000, ..., stressweight = 1,
-  cordweight = 0.5, q = 1, minpts = ndim + 1, epsilon = 10,
-  rang = NULL, verbose = 0, normed = TRUE, scale,
-  stresstype = "default")
+cop_apstress(
+  dis,
+  theta = c(1, 1, 1),
+  ndim = 2,
+  weightmat = NULL,
+  init = NULL,
+  itmaxi = 1000,
+  ...,
+  stressweight = 1,
+  cordweight = 0.5,
+  q = 1,
+  minpts = ndim + 1,
+  epsilon = 10,
+  rang = NULL,
+  verbose = 0,
+  normed = TRUE,
+  scale = "sd",
+  stresstype = "default"
+)
 }
 \arguments{
 \item{dis}{numeric matrix or dist object of a matrix of proximities}
