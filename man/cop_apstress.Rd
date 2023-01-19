@@ -2,7 +2,7 @@
 % Please edit documentation in R/cops.R
 \name{cop_apstress}
 \alias{cop_apstress}
-\title{PCOPS versions of approximated power stress models. This uses an approximation and makes use of smacof.}
+\title{PCOPS version of approximated power stress model.}
 \usage{
 cop_apstress(
   dis,
@@ -27,7 +27,7 @@ cop_apstress(
 \arguments{
 \item{dis}{numeric matrix or dist object of a matrix of proximities}
 
-\item{theta}{the theta vector of powers; this is either a scalar of the tau and upsilon transformation for the observed proximities, or a vector where the first is the kappa argument for the fitted distances (here internally fixed to 1) and the second the tau argument and the third the upsilon argument. Defaults to 1 1 1}
+\item{theta}{the theta vector of parameters to optimize over. Must be of length two, with the first the tau argument and the second the upsilon argument. It can also be a scalar of the tau and upsilon transformation for the observed proximities and gets recycled for both ups and tau (so they are equal). Defaults to 1 1.}
 
 \item{ndim}{number of dimensions of the target space}
 
@@ -72,6 +72,6 @@ A list with the components
 }
 }
 \description{
-PCOPS versions of approximated power stress models. This uses an approximation and makes use of smacof.
+This uses an approximation to power stress that can make use of smacof as workhorse. Free parameters are tau and upsilon.
 }
 \keyword{multivariate}

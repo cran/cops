@@ -2,7 +2,7 @@
 % Please edit documentation in R/cops.R
 \name{cop_rpowerstress}
 \alias{cop_rpowerstress}
-\title{COPS version of restricted powerstress}
+\title{PCOPS version of restricted powerstress.}
 \usage{
 cop_rpowerstress(
   dis,
@@ -28,7 +28,7 @@ cop_rpowerstress(
 \arguments{
 \item{dis}{numeric matrix or dist object of a matrix of proximities}
 
-\item{theta}{the theta vector of powers; the first two agruments are for kappa and lambda and must be equal (for the dissimilarities and observed proximities), the third nu (for the weights). If a scalar is given it is recycled, if a vetor of length is given, it gets expanded to c(theta[1],theta[1],theta[2]) .  Defaults to 1 1 1.}
+\item{theta}{the theta vector of powers; the first two arguments are for kappa and lambda and should be equal (for the fitted distances and observed proximities), the third nu (for the weights). Internally the kappa and lambda are equated. If a scalar is given it is recycled (so all elements of theta are equal); if a vector of length 2 is given, it gets expanded to c(theta[1],theta[1],theta[2]). Defaults to 1 1 1.}
 
 \item{weightmat}{(optional) a matrix of nonnegative weights}
 
@@ -63,7 +63,7 @@ cop_rpowerstress(
 \value{
 A list with the components
 \itemize{
-        \item stress: the stress
+        \item stress: the stress1 value (sqrt(stress.m))
         \item stress.m: default normalized stress
         \item copstress: the weighted loss value
         \item OC: the Optics cordillera value
@@ -73,6 +73,6 @@ A list with the components
 }
 }
 \description{
-COPS version of restricted powerstress
+This is a power stress where kappa and lambda are free to vary but restricted to be equal, so the same exponent will be used for distances and dissimilarities. nu (for the weights) is also free.
 }
 \keyword{multivariate}
