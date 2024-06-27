@@ -1,5 +1,68 @@
+Version 1.11-3:
+  - Updated docs to include better hyperlinks. Also changed some solver names to match the function names we use. Touchups for CRAN release.
+
+Version 1.11-2:
+  - Touchups for CRAN release. 
+
+Version 1.11-1:
+  - Fixed bug (or perhaps it intended at some point) where the returned OC is for the unscaled configuration with the dmax for the scaled config. We now return the scaled configuration as $conf, the unscaled as $usconf. OC now matches between manual calculation with foo$conf and summary function.   
+
+Version 1.10-1:
+  - Added jackmds and bootmds methods for pcops objects. Fixed calls in cop_* functions to work with jackmds and bootmds.  
+
+Version 1.9-1:
+  - Updates for CRAN. Fixed roxygen @docType change from here https://github.com/r-lib/roxygen2/issues/1491. 
+
+Version 1.8-2:
+  - Finished moving to smacofx functions as workhorse for all cop_X functions (mostly using scmaofx::powerStressMin). Removed rStressMin and powerStressMin. 
+
+Version 1.8-0:
+  - Forked all the functionality that was not directly cops related to smacofx. Now the main function is copStressMin which is essentially the cops version of a mash-up of smacofx::rstressMin and smacofx::powerStressMin, thus generalizing all the models in smacofx but lmds, bcmds and clca. cops-c models are of class smacofP and work with the infrastructure of smacofx. Similarly, objects returned from pcops have a slot fit that is of class smacofP or smacofB and thus can also use the smacofx functionality. Added type argument to all functions. 
+
+Version 1.7-2:
+  - Changed the Shepard plot to now work with power exponents in the dhat regression line added to the plot. The latter are the same one as obtained by the MDS fit only linearly transformed to be on the same scale as the configuration distances.  
+
+Version 1.7-1:
+  - Added bootmds, biplotmds, icExploreGen, multistart, permtest, jackmds function that work with smacofP and copsc objects.   
+
+Version 1.7-0:
+  - Completely redid the object class smacofP returned from the functions so that they match smacof objects (incl. all symmetric matrices are dist objects). New methods for generics of smacofP. updated functions to also allow for principal argument. Programmed some sanity checks. Weightmat can now also be a dist object. NA or +-inf in weightmat will be treated as 0. 
+
+Version 1.6-1:
+  - Changed Sammon mapping and elastic scaling functions optimal scaling to interval and ratio only. updated multiscale, alscal, rstressMin and powerStressMin. Moved many functions in their own files. 
+
+Version 1.6-0:
+  - Added Sammon mapping and elastic scaling functions that allows optimal scaling.  
+
+Version 1.5-0:
+  - Added a dedicated r-stress function rStressMin that supports ratio, interval and ordinal optimal scaling with powers for distances and weights. Power stress is now meant only for metric scaling with ratio and interval transformations and powers. Extended copStressMin to allow ordinal and interval optimal scaling be used with powers for distances and weights. Added multiscale and alscal functions.
+
+Version 1.4-3:
+  - Added distance function for "Blended Chi-Square Distance" after Lindsay (1994). Exported the distance functions.
+
+Version 1.4-2:
+  - Added aliasing functions copStressMin and copsc.   
+
+Version 1.4-1:
+  - Added a function for calculating the phi distance. Added aliasing functions copStressMin and copsc.   
+
+Version 1.4-0:
+  - Two-step algorithms now always use at least 0.1*itmax number of iterations for the second step even if itmax was exceeded by the first step, so itmax effectively is 1.1*itmax if there's no convergence prior. Fixed a bug when the number of iterations in the first step of a two-step algorithm exceeded itmax and a negative itmax was passed to the second algorithm. Now suppressing the useless warning from minqa:newuoa about maxfun < 10*length(par)^2 not recommended. Added (currently ineffective) code for using nloptr as engine for newuoa (instead of minqa) but not sure yet if we should switch (in test there was no clear advantage in terms of speed, accuracy and number of iterations). Fixed documentation and added details on the common error when two points are put on top of each other. Depend R version on 3.5.0 or higher due to matchphi data set. 
+
+Version 1.3-5:
+  - Added matchphi data. Changed default of itmax in powerStressMin, powerStressFast and copstressMin to 10000. Changed default of acc in powerStressFast and powerStressMin to 1e-6.
+
+Version 1.3-4:
+  - Changed citations.
+
+Version 1.3-3:
+  - Changed default of acc in powerStressMin to 1e-6. In powerStressFast to 1e-10.
+
+Version 1.3-2:
+  - Removed torgerson function and use smacof::torgerson throughout.
+
 Version 1.3-1:
-  - Added test to .Rbuildignore for the time being (test are 8 years out of date). Removed testthat from Suggests. Removed stats from Enhances. Changed docs. Added class of cmdscale wrapper to cmdscaleE and of sammon wrapper to sammonE and also cmdscale and sammon (to distinguish methods that are of general interest (cmdscale/sammon) or only within stops (cmdscaleE/sammonE). Tweaked Description. 
+  - Added test to .Rbuildignore for the time being (test are 8 years out of date). Removed testthat from Suggests. Removed stats from Enhances. Changed docs. Added class of cmdscale wrapper to cmdscaleE and of sammon wrapper to sammonE and also cmdscale and sammon (to distinguish methods that are of general interest (cmdscale/sammon) or only within stops (cmdscaleE/sammonE). Tweaked Description. CRAN release.
 
 Version 1.3-0:
   - New version 1.3-0. Changed the theta arguments to only allow for the number of free parameters for P-COPS (as in STOPS). P-COPS models may also fitted with the stops package if one wants more/better solvers. Tweaks to docs.   
