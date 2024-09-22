@@ -1,8 +1,10 @@
-001678898a4598771c9ec4c6d534ecf2 *DESCRIPTION
-8d5e131fbbabfece01d2eed98ff15ea8 *NAMESPACE
-16ccb36ae638e4908b13842d69fa2c81 *NEWS
+d4ea573f5f3b73a782e515c91a62726a *DESCRIPTION
+cc2d0fee4417b814c9a4588cb9f946ff *NAMESPACE
+eaf03aca053ff8f74a8e514e481a0771 *NEWS
 f34707f615a55f9557c035cdc19f6f50 *R/BankingCrisesDistances-data.R
 d845c427ed62b2a6bf2038e349fefd76 *R/bcsdistance.R
+3399836158eb50a2bf2f3c33b350a3c5 *R/biplotmds.pcops.R
+7909d8894263550cf94c04442086aaf2 *R/biplotmds.stops.R
 e69cb04669629900a86c4c762614dec9 *R/bootmds.pcops.R
 979d39eca5a8ba7d7770c7148793023d *R/coef.cops.R
 bed0c8591cb81930a0753d8549aaf8d8 *R/conf_adjust.R
@@ -23,7 +25,7 @@ f42c8fa7aac8fa53ae11c1abfb0778e9 *R/cop_smacofSym.R
 0c853dc3ae0eba2a6c7c399bb7ae7fef *R/cops-package.R
 0aeb5e90cbe2dabc6b19b5d15ec26fd5 *R/cops.R
 57508a66c508111c1cba0028bb06f146 *R/copstress.R
-c7ce54a70eb0c26e309421cd4c62ce5b *R/copstressMin.R
+985340b050d5c643de327ef1b76545b1 *R/copstressMin.R
 70febd8aa1db795e923826ce18a6aeb4 *R/doubleCenter.R
 6bc5cd5f5d57c96f6306ef11374e03d7 *R/enorm.R
 195d3dfe7ccfe56740ebfbd4614540d9 *R/jackmds.pcops.R
@@ -53,6 +55,8 @@ c6dea572a3269557d98fc38eef05e16a *inst/CITATION
 481ff66924b059c944b1e95efaee459f *inst/doc/cops.html
 6375d3192c2434320364b364ae91c9a4 *inst/doc/cops.html.asis
 f4ef66d0e0ac3b2097eb0c514668cb62 *man/BankingCrisesDistances.Rd
+a01de6ffa9f97e9c1ec91f2aeefae471 *man/biplotmds.pcops.Rd
+938dac33d3fb1d0565aaf546e74226b2 *man/biplotmds.stops.Rd
 938d9e093770966ee074192a0ee67456 *man/bootmds.pcops.Rd
 e6dac3a01a7989293001077aebc846bc *man/cop_apstress.Rd
 7ddb345d077542b41fddbf373c7f7186 *man/cop_cmdscale.Rd
@@ -71,7 +75,7 @@ eb1ea0f4d5a25052462a152310a5eb11 *man/cop_smacofSphere.Rd
 3de51274ceb562334553436348b9df48 *man/cops-package.Rd
 32ce732eb957879c6b6f6cf734912b40 *man/cops.Rd
 5abc45a18399583f485e1cb6d7e33cad *man/copstress.Rd
-429ccfc1544bcfe72ca5e29914c20ab0 *man/copstressMin.Rd
+2be9235d7cc3b9e15c590846c9bf45b6 *man/copstressMin.Rd
 0424d28acb10f64fe81a5a32377fc5ac *man/doubleCenter.Rd
 f0a14eac1c2ec3a24afdc7671c8de03c *man/enorm.Rd
 57d2ee609ce63f211474a8bee10052f7 *man/jackmds.pcops.Rd
